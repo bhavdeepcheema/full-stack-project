@@ -5,6 +5,13 @@ import { Prisma } from "@prisma/client";
 
 const termWithUsers = Prisma.validator<Prisma.UserDefaultArgs>()({
     include: { userTerms: true}
+        userTerms: true,
+    _count: {
+      select: {
+        userTerms: true
+      }
+    }
+  }
 });
 
 export type TermWithUsers = Prisma.TermGetPayload<typeof termWithUsers>;

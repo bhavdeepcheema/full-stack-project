@@ -34,7 +34,8 @@ export const createTerm = async(termData: {
 }): Promise<Term> => {
     const newTerm: Term = await prisma.term.create({
         data: {
-            ...termData
+            ...termData,
+            createdAt: new Date()
         }
     });
 

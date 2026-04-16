@@ -3,4 +3,6 @@ export type FrontendTerm = {
     title: string,
     definition: string
     isFavourite: boolean
+    favouritesCount: number
+    createdAt: string
 }

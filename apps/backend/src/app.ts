@@ -33,6 +33,10 @@ app.get("/",  (_req, res) => {
     res.send("Got response from backend!");
 });
 
+app.get("/api/v1/test", (_req, res) => {
+  res.send("API route works");
+});
+
 app.use("/api/v1", termRoutes);
 app.use("/api/v1", userTermRoutes);
 app.use(errorHandler); //errorhandler catches errors as last element in middleware chain
