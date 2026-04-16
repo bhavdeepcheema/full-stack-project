@@ -24,6 +24,8 @@ export function TermCard(
             <h3 onClick={() => onTitleClick(term.id)}>
                 {term.title}
             </h3>
+
+            <span>{term.favouritesCount} {term.favouritesCount === 1 ? "favourite" : "favourites"}</span>
             <SignedIn>
                 <button onClick={() => onSaveClick(term.id)}>
                     {term.isFavourite ? <CheckmarkIcon /> : <DiskIcon />}
