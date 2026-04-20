@@ -10,7 +10,8 @@
     "dev": "concurrently \"npm:start:frontend\" \"npm:start:backend\"",
     "migrate:backend": "npx --workspace=@complexicon/backend prisma migrate dev",
     "start:frontend": "npm run dev --workspace=@complexicon/frontend",
-    "start:backend": "npm start --workspace=@complexicon/backend"
+    "start:backend": "npm start --workspace=@complexicon/backend",
+    "build": "tsc -b && vite build"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
   },
   "dependencies": {
     "@clerk/types": "^4.50.2",
+    "cors": "^2.8.6",
     "dotenv": "^16.4.7"
   }
 }

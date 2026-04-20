@@ -5,7 +5,7 @@ const corsOptions: CorsOptions = {
     // throw an error if the request does not come from the list of allowed origins
     origin: function(origin, callback) {
         const allowedOrigins = [process.env.FRONTEND_URL];
-
+console.log(allowedOrigins);
         if(allowedOrigins.includes(origin) || !origin) {
             callback(null, true);
         } else {

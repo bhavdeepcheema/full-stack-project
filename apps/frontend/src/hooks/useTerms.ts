@@ -10,7 +10,7 @@ export function useTerms(
     // extract methods from useAuth() clerk method
     const {getToken, isSignedIn} = useAuth();
     const [terms, updateTerms] = useState<Term[]>([]);
-    const [error, setError] = useState<string | null>();
+    const [error, setError] = useState<string | null>(null);
 
     const fetchTerms = async() => {
         try {
@@ -26,7 +26,8 @@ export function useTerms(
             // re-render a component not passed a filter function...why?
             updateTerms([...result]);
         } catch(errorObject) {
-            setError(`${errorObject}`);
+            setError(errorObject instanceof Error ? errorObject.message :
+        String(errorObject)); 
         }
     }
 
