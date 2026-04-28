@@ -4,11 +4,12 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import { clerkMiddleware } from "@clerk/express";
 
-//import corsOptions from "../config/cors";
+import corsOptions from "../config/cors";
 import setupSwagger from "../config/swagger";
 import termRoutes from "./api/v1/routes/termRoutes";
 import userTermRoutes from "./api/v1/routes/userTermRoutes";
 import errorHandler from "./api/v1/middleware/errorHandler";
+import cors from "cors";
 
 const app: Express = express();
 
@@ -16,12 +17,14 @@ const app: Express = express();
 console.log("trying");
 dotenv.config();
 
+// add cors
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 // add morgan middleware, combined format logs info about each HTTP request
 app.use(morgan("combined"));
 app.use(express.json());
-
-//add cors middleware
-//app.use(cors(corsOptions));
 
 // add clerk middleware
 app.use(clerkMiddleware());
