@@ -3,122 +3,153 @@ import { Term } from "@prisma/client";
 export const termSeedData: Omit<Term, 'id'>[] = [
 {
     title: 'API',
-    definition: 'An API (Application Programming Interface) is a set of functions and protocols that allow communication between software components.'
-  },
-  {
+    definition: 'An API (Application Programming Interface) is a set of functions and protocols that allow communication between software components.',
+    createdAt: new Date()
+},
+{
     title: 'Asynchronous',
-    definition: 'Asynchronous programming allows tasks to run separately from the main program flow, enabling non-blocking operations such as network requests.'
-  },
-  {
+    definition: 'Asynchronous programming allows tasks to run separately from the main program flow, enabling non-blocking operations such as network requests.',
+    createdAt: new Date()
+},
+{
     title: 'Callback',
-    definition: 'A callback is a function passed into another function as an argument and executed after some operation completes.'
-  },
-  {
+    definition: 'A callback is a function passed into another function as an argument and executed after some operation completes.',
+    createdAt: new Date()
+},
+{
     title: 'DOM',
-    definition: 'The Document Object Model (DOM) is a programming interface for web documents, representing the structure of a page as a tree of objects.'
-  },
-  {
+    definition: 'The Document Object Model (DOM) is a programming interface for web documents, representing the structure of a page as a tree of objects.',
+    createdAt: new Date()
+},
+{
     title: 'Event Loop',
-    definition: 'The event loop handles asynchronous events and executes the appropriate callback functions in a non-blocking manner.'
-  },
-  {
+    definition: 'The event loop handles asynchronous events and executes the appropriate callback functions in a non-blocking manner.',
+    createdAt: new Date()
+},
+{
     title: 'Function',
-    definition: 'A function is a reusable block of code designed to perform a particular task.'
-  },
-  {
+    definition: 'A function is a reusable block of code designed to perform a particular task.',
+    createdAt: new Date()
+},
+{
     title: 'Hoisting',
-    definition: 'Hoisting is JavaScript\'s default behavior of moving declarations to the top of the current scope before code execution.'
-  },
-  {
+    definition: 'Hoisting is JavaScript\'s default behavior of moving declarations to the top of the current scope before code execution.',
+    createdAt: new Date()
+},
+{
     title: 'Promise',
-    definition: 'A Promise is an object representing the eventual completion or failure of an asynchronous operation.'
-  },
-  {
+    definition: 'A Promise is an object representing the eventual completion or failure of an asynchronous operation.',
+    createdAt: new Date()
+},
+
+{
     title: 'Closure',
-    definition: 'A closure is a function that remembers the variables from its lexical scope even when the function is executed outside that scope.'
-  },
-  {
+    definition: 'A closure is a function that remembers the variables from its lexical scope even when the function is executed outside that scope.',
+    createdAt: new Date()
+},
+{
     title: 'JSON',
-    definition: 'JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.'
-  },
-  {
+    definition: 'JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.',
+    createdAt: new Date()
+},
+{
     title: 'LocalStorage',
-    definition: 'LocalStorage is a web storage API that allows websites to store data in the browser with no expiration time.'
-  },
-  {
+    definition: 'LocalStorage is a web storage API that allows websites to store data in the browser with no expiration time.',
+    createdAt: new Date()
+},
+{
     title: 'Fetch API',
-    definition: 'The Fetch API provides a modern interface for making HTTP requests in web browsers.'
-  },
-  {
+    definition: 'The Fetch API provides a modern interface for making HTTP requests in web browsers.',
+    createdAt: new Date()
+},
+{
     title: 'HTTP',
-    definition: 'HTTP (Hypertext Transfer Protocol) is the foundation of data communication for the web.'
-  },
-  {
+    definition: 'HTTP (Hypertext Transfer Protocol) is the foundation of data communication for the web.',
+    createdAt: new Date()
+},
+{
     title: 'CSS',
-    definition: 'CSS (Cascading Style Sheets) is used to describe the presentation of a document written in HTML or XML.'
-  },
-  {
+    definition: 'CSS (Cascading Style Sheets) is used to describe the presentation of a document written in HTML or XML.',
+    createdAt: new Date()
+},
+{
     title: 'HTML',
-    definition: 'HTML (HyperText Markup Language) is the standard markup language for creating web pages.'
-  },
-  {
+    definition: 'HTML (HyperText Markup Language) is the standard markup language for creating web pages.',
+    createdAt: new Date()
+},
+{
     title: 'JavaScript',
-    definition: 'JavaScript is a programming language that enables dynamic interactions on web pages.'
-  },
-  {
+    definition: 'JavaScript is a programming language that enables dynamic interactions on web pages.',
+    createdAt: new Date()
+},
+{
     title: 'Module',
-    definition: 'A module is a reusable piece of code that encapsulates related functions, variables, or classes.'
-  },
-  {
+    definition: 'A module is a reusable piece of code that encapsulates related functions, variables, or classes.',
+    createdAt: new Date()
+},
+{
     title: 'Node.js',
-    definition: 'Node.js is a JavaScript runtime built on Chrome\'s V8 engine that allows JavaScript to be run on the server.'
-  },
-  {
+    definition: 'Node.js is a JavaScript runtime built on Chrome\'s V8 engine that allows JavaScript to be run on the server.',
+    createdAt: new Date()
+},
+{
     title: 'TypeScript',
-    definition: 'TypeScript is a strongly typed programming language that builds on JavaScript and adds static typing.'
-  },
-  {
+    definition: 'TypeScript is a strongly typed programming language that builds on JavaScript and adds static typing.',
+    createdAt: new Date()
+},
+{
     title: 'Variable',
-    definition: 'A variable is a named container for storing data values.'
-  },
-  {
+    definition: 'A variable is a named container for storing data values.',
+    createdAt: new Date()
+},
+{
     title: 'Scope',
-    definition: 'Scope refers to the accessibility of variables and functions in different parts of the code.'
-  },
-  {
+    definition: 'Scope refers to the accessibility of variables and functions in different parts of the code.',
+    createdAt: new Date()
+},
+{
     title: 'Array',
-    definition: 'An array is a data structure used to store multiple values in a single variable.'
-  },
-  {
+    definition: 'An array is a data structure used to store multiple values in a single variable.',
+    createdAt: new Date()
+},
+{
     title: 'Object',
-    definition: 'An object is a collection of properties, where each property is defined as a key-value pair.'
-  },
-  {
+    definition: 'An object is a collection of properties, where each property is defined as a key-value pair.',
+    createdAt: new Date()
+},
+{
     title: 'NaN',
-    definition: 'NaN (Not-a-Number) is a value representing a computation that does not yield a valid number.'
-  },
-  {
+    definition: 'NaN (Not-a-Number) is a value representing a computation that does not yield a valid number.',
+    createdAt: new Date()
+},
+{
     title: 'Event Listener',
-    definition: 'An event listener is a procedure in JavaScript that waits for an event to occur and responds to it.'
-  },
-  {
+    definition: 'An event listener is a procedure in JavaScript that waits for an event to occur and responds to it.',
+    createdAt: new Date()
+},
+{
     title: 'ES6',
-    definition: 'ES6 (ECMAScript 2015) is a major update to JavaScript that introduced new features like let/const, arrow functions, classes, and modules.'
-  },
-  {
+    definition: 'ES6 (ECMAScript 2015) is a major update to JavaScript that introduced new features like let/const, arrow functions, classes, and modules.',
+    createdAt: new Date()
+},
+{
     title: 'Lexical Environment',
-    definition: 'A lexical environment is a structure that holds identifier-variable mapping in JavaScript.'
-  },
-  {
+    definition: 'A lexical environment is a structure that holds identifier-variable mapping in JavaScript.',
+    createdAt: new Date()
+},
+{
     title: 'Web API',
-    definition: 'Web APIs are interfaces provided by browsers to interact with the browser and device hardware.'
-  },
-  {
+    definition: 'Web APIs are interfaces provided by browsers to interact with the browser and device hardware.',
+    createdAt: new Date()
+},
+{
     title: 'BOM',
-    definition: 'The Browser Object Model (BOM) allows interaction with the browser outside the content of the web page.'
-  },
-  {
+    definition: 'The Browser Object Model (BOM) allows interaction with the browser outside the content of the web page.',
+    createdAt: new Date()
+},
+{
     title: 'Event Bubbling',
-    definition: 'Event bubbling is a type of event propagation in the DOM where events propagate from the target element up to the root.'
-  }
+    definition: 'Event bubbling is a type of event propagation in the DOM where events propagate from the target element up to the root.',
+    createdAt: new Date()
+}
 ]

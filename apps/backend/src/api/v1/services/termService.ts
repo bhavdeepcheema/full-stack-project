@@ -5,19 +5,45 @@ import { TermWithUsers } from "../../../../types/termWithUsers";
 export const fetchAllTerms = async(): Promise<TermWithUsers[]> => {
     return prisma.term.findMany({
         include: {
-            userTerms: true
+            userTerms: true,
+            _count: {
+                select: {
+                    userTerms: true,
+                },
+            },
         }
     });
 }
 
 // note the return of a TermWithUsers here
+
+
+export const getAllTerms = async (): Promise<TermWithUsers[]> => {
+  return prisma.term.findMany({
+    include: {
+      userTerms: true,
+      _count: {
+        select: {
+          userTerms: true,
+        },
+      },
+    },
+  });
+};
+
+
 export const getTermById = async(id: number): Promise<TermWithUsers | null> => {
     const term = prisma.term.findUnique({
         where: {
             id: id,
         },
         include: {
-            userTerms: true
+            userTerms: true,
+            _count: {
+                select: {
+                    userTerms: true,
+                },
+            },
         }
     });
 
@@ -34,7 +60,8 @@ export const createTerm = async(termData: {
 }): Promise<Term> => {
     const newTerm: Term = await prisma.term.create({
         data: {
-            ...termData
+            ...termData,
+            createdAt: new Date()
         }
     });
 

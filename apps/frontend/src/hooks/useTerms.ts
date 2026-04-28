@@ -4,70 +4,57 @@ import * as TermService from "../services/termService";
 import { useAuth } from "@clerk/clerk-react";
 
 export function useTerms(
-    dependencies: unknown[],
-    filterFn? : ((term: Term) => Boolean)|null,
+  dependencies: unknown[] = [],
+  filterFn?: ((term: Term) => boolean) | null,
 ) {
-    // extract methods from useAuth() clerk method
-    const {getToken, isSignedIn} = useAuth();
-    const [terms, updateTerms] = useState<Term[]>([]);
-    const [error, setError] = useState<string | null>();
+  const { getToken, isSignedIn, isLoaded } = useAuth();
+  const [terms, updateTerms] = useState<Term[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-    const fetchTerms = async() => {
-        try {
-            // get the current user's session token for use in request
-            // inclusion in Authorization header authorizes current user/gets favourites
-            let sessionToken = isSignedIn? await getToken() : null;
-            let result = await TermService.fetchTerms(sessionToken);
-            if(filterFn) {
-                result = result.filter(filterFn);
-            }
+  const fetchTerms = async () => {
+    try {
+      setError(null);
 
-            // this spread of the newly created result is necessary in order to correctly
-            // re-render a component not passed a filter function...why?
-            updateTerms([...result]);
-        } catch(errorObject) {
-            setError(`${errorObject}`);
-        }
+      const sessionToken = isSignedIn ? await getToken() : null;
+      let result = await TermService.fetchTerms(sessionToken);
+      console.log("useTerms result:", result);
+console.log("useTerms result length:", result.length);
+console.log("sessionToken exists?", !!sessionToken);
+
+      console.log("Fetched terms:", result);
+      console.log("Fetched terms count:", result.length);
+
+      if (filterFn) {
+        result = result.filter(filterFn);
+        console.log("Filtered terms:", result);
+        console.log("Filtered terms count:", result.length);
+      }
+
+      updateTerms(result);
+    } catch (errorObject) {
+      setError(errorObject instanceof Error ? errorObject.message : String(errorObject));
     }
+  };
 
-    // TODO: Update method to request update based on user login/term status
-    const toggleFavouriteTerm = async(termId: number) => {
-        try {
-            let sessionToken = isSignedIn? await getToken() : null;
+  const toggleFavouriteTerm = async (termId: number) => {
+    try {
+      const sessionToken = isSignedIn ? await getToken() : null;
 
-            if(!sessionToken) {
-                throw new Error("Not Authorized");
-            } else {
-                await TermService.toggleFavouriteTerm(termId, sessionToken);
-                await fetchTerms();
-            }
-        } catch(errorObject) {
-            setError(`${errorObject}`);
-        }   
+      if (!sessionToken) {
+        throw new Error("Not Authorized");
+      }
+
+      await TermService.toggleFavouriteTerm(termId, sessionToken);
+      await fetchTerms();
+    } catch (errorObject) {
+      setError(errorObject instanceof Error ? errorObject.message : String(errorObject));
     }
+  };
 
-    // useEffect only needs to be used when first getting terms. It doesn't need favouriteTerms as
-    // a dependency since modifying a term can just manually update state
-    // note: useEffect triggers multiple times when in Strict Mode
-    // Added optional dependencies so that these may be passed to the effect if needed
-    useEffect(() => {
-        fetchTerms();
-    }, [...dependencies]);
+  useEffect(() => {
+    if (!isLoaded) return;
+    fetchTerms();
+  }, [isLoaded, isSignedIn, filterFn, ...dependencies]);
 
-    return { terms, error, updateTerms, fetchTerms, toggleFavouriteTerm };
+  return { terms, error, updateTerms, fetchTerms, toggleFavouriteTerm };
 }
-
-/** NOTES **
- * We have a problem: terms need to be able to save their changes (i.e. being
- * saved for the user) but they also need to be able to update the state
- * of the component using them.
- * 
- * Rather than re-writing handlers for different pages, a custom hook will allow
- * us to update state, and terms, in real time regularly.
- * 
- * USEEFFECT will invoke the moment a component is rendered. 
- * The second array will list dependencies of the effect, that is, all "reacting" 
- * elements that the effect handles. useEffect will only invoke on the INITIAL rendering
- * of a component -- it well then only re-invoke if a DEPENDENCY value changes.'
- * 
- */

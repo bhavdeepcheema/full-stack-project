@@ -18,6 +18,7 @@ model Term {
   title       String
   definition  String
   userTerms   UserTerm[]
+  createdAt   DateTime
 }
 
 // This model does not handle any auth concerns of users, which is dealt with by 
