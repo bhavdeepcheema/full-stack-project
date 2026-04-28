@@ -1,6 +1,6 @@
 import express, {Express} from "express";
 import morgan from "morgan";
-import cors from "cors";
+//import cors from "cors";
 import dotenv from "dotenv";
 import { clerkMiddleware } from "@clerk/express";
 
@@ -9,19 +9,22 @@ import setupSwagger from "../config/swagger";
 import termRoutes from "./api/v1/routes/termRoutes";
 import userTermRoutes from "./api/v1/routes/userTermRoutes";
 import errorHandler from "./api/v1/middleware/errorHandler";
+import cors from "cors";
 
 const app: Express = express();
 
 // test comment added for manual deployment
-console.log("Trying deployment trigger");
+console.log("trying");
 dotenv.config();
+
+// add cors
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // add morgan middleware, combined format logs info about each HTTP request
 app.use(morgan("combined"));
 app.use(express.json());
-
-//add cors middleware
-app.use(cors(corsOptions));
 
 // add clerk middleware
 app.use(clerkMiddleware());
@@ -31,6 +34,10 @@ setupSwagger(app);
 
 app.get("/",  (_req, res) => {
     res.send("Got response from backend!");
+});
+
+app.get("/api/v1/test", (_req, res) => {
+  res.send("API route works");
 });
 
 app.use("/api/v1", termRoutes);

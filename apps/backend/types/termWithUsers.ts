@@ -3,8 +3,15 @@ import { Prisma } from "@prisma/client";
 // the inclusion of UserTerms
 // see https://www.prisma.io/docs/orm/prisma-client/type-safety/operating-against-partial-structures-of-model-types
 
-const termWithUsers = Prisma.validator<Prisma.UserDefaultArgs>()({
-    include: { userTerms: true}
+const termWithUsers = Prisma.validator<Prisma.TermDefaultArgs>()({
+  include: {
+    userTerms: true,
+    _count: {
+      select: {
+        userTerms: true,
+      },
+    },
+  },
 });
 
 export type TermWithUsers = Prisma.TermGetPayload<typeof termWithUsers>;
